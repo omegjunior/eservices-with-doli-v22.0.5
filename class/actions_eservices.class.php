@@ -132,8 +132,6 @@ class ActionsEservices
 		if (in_array($parameters['currentcontext'], array('publicnewticketcard', 'ticketcard')) 
 			&& ($action == 'add' || $action == 'update' || $action == 'update_extras'  || $action == 'create_ticket')) {	    // do something only for the context 'somecontext1' or 'somecontext2'
 			// cas de l'initialisation après une action sur un bouton ou un lien sur les pages ticketcard et public
-			// Do what you want here...
-			// You can for example call global vars like $fieldstosearchall to overwrite them, or update database depending on $action and $_POST values.
 			//nous voulons gérer les extrafields à montrer, à supprimer pour éviter les erreurs de valeurs obligatoires absentes 
 			// et pour éviter de gérer avec javascript les champs à afficher dans l'interface publique et dans card selon le e-service sélectionné
 			// 1- éviter les erreurs de valeurs obligatoires à renseigner mais qui n'appartiennent pas au e-service en cours de traitement
@@ -1097,6 +1095,37 @@ class ActionsEservices
 				$parameters['object']->fetch_optionals();
 
 				$resarray = $object->fill_substitutionarray_with_extrafields($parameters['object'], $resarray, $extrafields, $array_key, $parameters['outputlangs']);
+
+				/*
+				* Génération automatique de variables booléennes pour les extrafields radio.
+				*
+				* Exemple :
+				* options_3_sexe = 1
+				*
+				* Génère :
+				* {object_options_3_sexe_1} = 1
+				* {object_options_3_sexe_2} = ''
+				*
+				* Utilisation ODT :
+				* [!-- IF {object_options_3_sexe_2} --]Elle[!-- ELSE {object_options_3_sexe_2} --]Il[!-- ENDIF {object_options_3_sexe_2} --]
+				*/	
+				if (!empty($extrafields->attributes['ticket']['type']) && is_array($extrafields->attributes['ticket']['type'])) {
+					foreach ($extrafields->attributes['ticket']['type'] as $key => $type) {
+						if ($type !== 'radio') {
+							continue;
+						}
+
+						$optionKey = 'options_'.$key;
+						$currentValue = $parameters['object']->array_options[$optionKey] ?? '';
+
+						if (!empty($extrafields->attributes['ticket']['param'][$key]['options'])
+							&& is_array($extrafields->attributes['ticket']['param'][$key]['options'])) {
+							foreach ($extrafields->attributes['ticket']['param'][$key]['options'] as $optionValue => $optionLabel) {
+								$resarray[$array_key.'_options_'.$key.'_'.$optionValue] = ((string) $currentValue === (string) $optionValue) ? '1' : '';
+							}
+						}
+					}
+				}
 			}
 
 			$parameters['substitutionarray'] = array_merge($parameters['substitutionarray'], $resarray);

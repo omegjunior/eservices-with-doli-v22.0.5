@@ -193,3 +193,13 @@ WHERE name = '4_motifduvoyage'
 UPDATE llx_extrafields SET pos = 610
 WHERE name = '4_autremotif'
   AND elementtype = 'ticket';
+
+UPDATE llx_extrafields
+SET param = 'a:1:{s:7:"options";a:2:{i:1;s:5:"Homme";i:2;s:5:"Femme";}}'
+WHERE elementtype = 'ticket'
+  AND name = '3_sexe';
+
+UPDATE llx_extrafields
+SET param = 'a:1:{s:7:"options";a:2:{i:1;s:8:"Diocèse";i:2;s:58:"Institut - Congrégation - Ordre - Société - Communauté";}}'
+WHERE elementtype = 'ticket'
+  AND name = '3_rattachement';
