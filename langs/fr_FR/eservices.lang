@@ -1,0 +1,504 @@
+# Copyright (C) ---Put here your own copyright and developer email---
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# Generic
+#
+# Module label 'ModuleEservicesName'
+ModuleEservicesName = E-services
+# Module description 'ModuleEservicesDesc'
+ModuleEservicesDesc = Module de gestion des e-services des structures et institutions du diocèse de Cotonou
+
+#
+# Admin page
+#
+EservicesSetup = Configuration du module Eservices
+Settings = Réglages
+EservicesSetupPage = Page de configuration du module Eservices
+Eservices_MYPARAM1 = My param 1
+Eservices_MYPARAM1Tooltip = My param 1 tooltip
+Eservices_MYPARAM2=My param 2
+Eservices_MYPARAM2Tooltip=My param 2 tooltip
+
+
+#
+# About page
+#
+About = About
+EservicesAbout = À propos de Eservices
+EservicesAboutPage = Page à propos de Eservices
+EservicesAbout = Pour la gestion des e-services des structures et institutions du diocèse de Cotonou
+#
+
+
+#
+# Sample page
+#
+MyModuleArea = Home MyModule
+MyPageName = My page name
+
+#
+# Sample widget
+#
+MyWidget = My widget
+MyWidgetDescription = My widget description
+
+#
+# Clés et traductions
+#
+list_actes = Liste des actes soumis à la demande
+form_elements = Liste des champs constitutifs des formulaires de demande
+fk_acteTooltipHelp = Actes à demander
+Digitalservice = Gestion des e-services
+New_Digitalservice = Nouvel e-service
+Formulaire_Champ_New = Nouveau champ formulaire
+List_Digitalservice = Liste des e-services
+Formulaire_Champ_List = Liste des champs
+ListChampForm = Liste des champs des formulaires e-services
+eservice = service à offrir en ligne
+NewChampForm = Nouveau champ de formulaire de demande
+listeeservices = E-service d'appartenance
+MenuListNonClosedDemande = Demandes ouvertes
+ESERVICES_TITLE_PUBLIC = Titre de la page de l'interface publique
+TICKET_IMAGE_PUBLIC_INTERFACE = Lien relatif au sous-domaine pour le logo à afficher en interface publque
+Ticket = Demande
+New_Demandes = Nouvelle demande
+List_Demandes = Liste des demandes
+My_Demandes = Mes demandes
+Stat_Demandes = Statistiques
+TicketSeverity = Urgence
+MAIN_FAVICON_URL = Lien relatif au répertoire ticket (root du sous-domaine) pour le favicon
+LatestNewTicketsEservices = Les %s dernières demandes (non lus)
+statuts = Statut
+Doctemplate = Modèle et Numérotation document
+DemandeNumDocSetup = Configuration et Numérotation des documents modèles
+ 
+# Generic
+Module56000Name=Gestionnaire de demandes administratives  
+Module56000Desc=Gestionnaire de demandes d'actes administratifs entre services  
+Permission56001=Voir les demandes  
+Permission56002=Modifier les demandes  
+Permission56003=Supprimer les demandes  
+Permission56004=Gérer les demandes  
+Permission56005=Voir les demandes de tous les services (non effectif pour les utilisateurs externes, toujours limité aux services dont ils dépendent)  
+Permission56006=Exporter les demandes  
+
+Tickets=Demandes  
+TicketDictType=Type de demande  
+TicketDictCategory=Catégorisation de la demande  
+TicketDictSeverity=Niveau de priorité  
+TicketDictResolution=Résolution de la demande  
+
+# Types de demandes  
+TicketTypeShortCOM=Demande commerciale  
+TicketTypeShortHELP=Demande d'assistance administrative  
+TicketTypeShortISSUE=Problème technique  
+TicketTypeShortPROBLEM=Problème administratif  
+TicketTypeShortREQUEST=Demande d'amélioration  
+TicketTypeShortPROJET=Projet administratif  
+TicketTypeShortOTHER=Autre  
+
+# Niveaux de priorité  
+TicketSeverityShortLOW=Faible  
+TicketSeverityShortNORMAL=Normal  
+TicketSeverityShortHIGH=Élevé  
+TicketSeverityShortBLOCKING=Critique  
+
+# Catégories de demandes  
+TicketCategoryShortOTHER=Autre  
+
+# Champs et messages d'erreur  
+ErrorBadEmailAddress=Champ '%s' incorrect  
+
+# Menu et navigation  
+MenuTicketMyAssign=Mes demandes  
+MenuTicketMyAssignNonClosed=Mes demandes ouvertes  
+MenuListNonClosed=Demandes ouvertes  
+
+# Types de contacts liés aux demandes  
+TypeContact_ticket_internal_CONTRIBUTOR=Contributeur interne  
+TypeContact_ticket_internal_SUPPORTTEC=Utilisateur assigné  
+TypeContact_ticket_external_SUPPORTCLI=Contact externe / suivi des demandes  
+TypeContact_ticket_external_CONTRIBUTOR=Contributeur externe  
+
+# Notifications et e-mails  
+OriginEmail=Email du demandeur  
+EmailReplyto=Répondre par e-mail  
+EmailReferences=Références dans les e-mails  
+Notify_TICKET_SENTBYMAIL=Notification de demande par e-mail  
+
+# Exportation des données  
+ExportDataset_ticket_1=Demandes  
+
+# Status
+Read=Lu  
+Assigned=Assigné  
+NeedMoreInformation=En attente d'informations supplémentaires  
+NeedMoreInformationShort=En attente  
+Waiting=En cours de traitement  
+SolvedClosed=Traité  
+Deleted=Supprimé  
+
+# Dict
+Severity=Niveau de priorité  
+TicketGroupIsPublic=Le groupe est public  
+TicketGroupIsPublicDesc=Si un groupe de demandes est public, il sera visible dans le formulaire lors de la création d'une demande à partir de l’interface publique  
+
+# Email templates  
+MailToSendTicketMessage=Pour envoyer un e-mail depuis une demande  
+# Admin page
+TicketSetup=Configuration du module de demandes  
+TicketSettings=Paramètres  
+TicketPublicAccess=Une interface publique ne nécessitant aucune identification est disponible à l'URL suivante  
+TicketSetupDictionaries=Les types de demandes, niveaux de priorité et catégories sont paramétrables à partir des dictionnaires  
+TicketParamModule=Configuration des variables du module  
+TicketParamMail=Configuration de la messagerie  
+
+TicketEmailNotificationFrom=E-mail de l'expéditeur pour la notification des réponses  
+TicketEmailNotificationFromHelp=E-mail de l'expéditeur à utiliser pour envoyer l'e-mail de notification lorsqu'une réponse est fournie dans le back-office. Par exemple noreply@example.com  
+
+TicketEmailNotificationTo=Notifier la création de la demande à cette adresse e-mail  
+TicketEmailNotificationToHelp=Si elle est présente, cette adresse e-mail sera notifiée de la création d'une demande  
+
+TicketNewEmailBodyLabel=Texte du message envoyé après la création d'une demande  
+TicketNewEmailBodyHelp=Le texte spécifié ici sera inséré dans l'e-mail confirmant la création d'une nouvelle demande depuis l'interface publique. Les informations sur la consultation de la demande sont automatiquement ajoutées.  
+
+TicketParamPublicInterface=Configuration de l'interface publique  
+
+TicketsEmailMustExist=Une adresse e-mail existante est requise pour créer une demande  
+TicketsEmailMustExistHelp=Pour accéder à l'interface publique et créer une nouvelle demande, votre compte doit déjà être existant.  
+
+TicketsShowProgression=Afficher la progression de la demande dans l'interface publique  
+TicketsShowProgressionHelp=Activez cette option pour afficher ou masquer la progression de la demande dans les pages de l'interface publique  
+
+TicketCreateThirdPartyWithContactIfNotExist=Demander les informations de l'organisation pour les e-mails inconnus  
+TicketCreateThirdPartyWithContactIfNotExistHelp=Vérifiez s'il existe un contact pour l'e-mail saisi. Sinon, demandez un nom et une organisation pour créer un contact.  
+
+PublicInterface=Interface publique  
+
+TicketPublicInterfaceTextHomeLabelAdmin=Texte de bienvenue dans l'interface publique  
+TicketPublicInterfaceTextHome=Vous pouvez créer une demande ou consulter son état avec son ID existant.  
+TicketPublicInterfaceTextHomeHelpAdmin=Le texte défini ici apparaîtra sur la page d'accueil de l'interface publique.  
+
+TicketPublicInterfaceTopicLabelAdmin=Titre de l'interface  
+TicketPublicInterfaceTopicHelp=Ce texte apparaîtra comme titre sur l'interface publique.  
+
+TicketPublicInterfaceTextHelpMessageLabelAdmin=Texte d'aide pour la saisie du message  
+TicketPublicInterfaceTextHelpMessageHelpAdmin=Ce texte apparaîtra au-dessus de la zone de saisie du message de l'utilisateur.  
+
+ExtraFieldsTicket=Attributs complémentaires  
+
+TicketCkEditorEmailNotActivated=L'éditeur HTML n'est pas activé. Veuillez définir la constante FCKEDITOR_ENABLE_MAIL à 1.  
+
+TicketsDisableEmail=Désactiver les e-mails de création ou de mise à jour des demandes  
+TicketsDisableEmailHelp=Par défaut, des e-mails sont envoyés lorsque de nouvelles demandes ou messages sont créés. Activez cette option pour désactiver toutes les notifications par e-mail.  
+
+TicketsLogEnableEmail=Activer les notifications par e-mail  
+TicketsLogEnableEmailHelp=À chaque changement, un e-mail sera envoyé aux contacts associés à cette demande.  
+
+TicketParams=Paramètres  
+
+TicketsShowModuleLogo=Afficher le logo du module dans l'interface publique  
+TicketsShowModuleLogoHelp=Activez cette option pour afficher le logo du module dans l'interface publique.  
+
+TicketsShowCompanyLogo=Afficher le logo de l'organisation dans l'interface publique  
+TicketsShowCompanyLogoHelp=Activez cette option pour afficher le logo de l'organisation principale dans les pages de l'interface publique.  
+
+TicketsShowCompanyFooter=Afficher le pied de page de l'organisation dans l'interface publique  
+TicketsShowCompanyFooterHelp=Activez cette option pour afficher le pied de page de l'organisation principale dans l'interface publique.  
+
+TicketsEmailAlsoSendToMainAddress=Envoyer également une notification à l'adresse e-mail principale  
+TicketsEmailAlsoSendToMainAddressHelp=Activez cette option pour envoyer aussi un email à l'adresse définie dans la configuration "%s" (Voir l'onglet "%s").  
+
+TicketsLimitViewAssignedOnly=Limiter l'affichage aux demandes assignées à l'utilisateur actuel  
+TicketsLimitViewAssignedOnlyHelp=Seules les demandes affectées à l'utilisateur actuel seront visibles. Ne s'applique pas aux utilisateurs disposant de droits de gestion complets.  
+
+TicketsActivatePublicInterface=Activer l'interface publique  
+TicketsActivatePublicInterfaceHelp=L'interface publique permet à tout utilisateur de créer une demande.  
+
+TicketsAutoAssignTicket=Affecter automatiquement la demande à son créateur  
+TicketsAutoAssignTicketHelp=Lors de la création d'une demande, l'utilisateur sera automatiquement affecté à celle-ci.  
+
+TicketAutoChangeStatusOnAnswer=Changer automatiquement le statut à la réponse  
+TicketAutoChangeStatusOnAnswerHelp=Lorsqu'un utilisateur répond à une demande, le statut est automatiquement mis à jour.  
+
+TicketNumberingModules=Module de numérotation des demandes  
+TicketsModelModule=Modèles de documents pour les demandes  
+
+TicketNotifyTiersAtCreation=Notifier le tiers lors de la création de la demande  
+
+TicketsDisableCustomerEmail=Désactiver les e-mails pour les demandes créées depuis l'interface publique  
+
+TicketsPublicNotificationNewMessage=Envoyer un e-mail lorsqu'un nouveau message est ajouté à une demande  
+TicketsPublicNotificationNewMessageHelp=Envoyer des notifications lorsqu'un nouveau message est ajouté à partir de l'interface publique.  
+
+TicketPublicNotificationNewMessageDefaultEmail=Adresse e-mail de notification par défaut  
+TicketPublicNotificationNewMessageDefaultEmailHelp=Envoyez un e-mail à cette adresse si la demande n'a pas d'utilisateur assigné.  
+
+TicketsAutoReadTicket=Marquer la demande comme "Lue" automatiquement  
+TicketsAutoReadTicketHelp=Les demandes créées dans le back-office seront automatiquement marquées comme "Lues".  
+
+TicketsDelayBeforeFirstAnswer=Délai avant la première réponse (en heures)  
+TicketsDelayBeforeFirstAnswerHelp=Si aucune réponse n'est donnée dans le délai spécifié, une alerte est affichée.  
+
+TicketsDelayBetweenAnswers=Délai maximal entre deux réponses (en heures)  
+TicketsDelayBetweenAnswersHelp=Si aucune mise à jour n'est effectuée dans ce délai, une alerte est affichée.  
+
+TicketsAutoNotifyClose=Notifier automatiquement la clôture de la demande  
+TicketsAutoNotifyCloseHelp=Lors de la clôture d'une demande, un message sera envoyé aux contacts liés.  
+
+TicketWrongContact=Le contact fourni ne fait pas partie des contacts liés à la demande. E-mail non envoyé.  
+
+TicketAssignContactToMessage=Assigner un contact externe à un message  
+TicketAssignContactToMessageHelp=Lorsqu'un contact connu répond à un message, son nom apparaît dans la liste des messages liés à la demande.  
+
+# Index & list page
+TicketsIndex=Espace des demandes  
+TicketList=Liste des demandes  
+TicketAssignedToMeInfos=Cette page affiche la liste des demandes créées par ou attribuées à l'utilisateur actuel.  
+NoTicketsFound=Aucune demande trouvée  
+NoUnreadTicketsFound=Aucune demande non lue trouvée  
+TicketViewAllTickets=Voir toutes les demandes  
+TicketViewNonClosedOnly=Voir seulement les demandes ouvertes  
+TicketStatByStatus=Demandes par statut  
+OrderByDateAsc=Trier par date croissante  
+OrderByDateDesc=Trier par date décroissante  
+ShowAsConversation=Afficher comme liste de conversation  
+MessageListViewType=Afficher la liste sous forme de tableau  
+ConfirmMassTicketClosingSendEmail=Envoyer automatiquement des e-mails lors de la clôture des demandes  
+ConfirmMassTicketClosingSendEmailQuestion=Souhaitez-vous avertir les services concernés lors de la clôture de ces demandes ?  
+# Ticket card
+Ticket=Demande  
+TicketCard=Fiche de la demande  
+CreateTicket=Créer une demande  
+EditTicket=Modifier une demande  
+TicketsManagement=Gestion des demandes  
+CreatedBy=Créé par  
+NewTicket=Nouvelle demande  
+SubjectAnswerToTicket=Réponse à la demande  
+TicketTypeRequest=Type de demande  
+TicketCategory=Catégorie de la demande  
+SeeTicket=Voir la demande  
+TicketMarkedAsRead=La demande a été marquée comme lue  
+TicketReadOn=Lu  
+TicketCloseOn=Date de clôture  
+MarkAsRead=Marquer la demande comme lue  
+TicketHistory=Historique des demandes  
+AssignUser=Assigner à l'utilisateur  
+TicketAssigned=La demande est à présent assignée  
+TicketChangeType=Changer le type  
+TicketChangeCategory=Changer la catégorie  
+TicketChangeSeverity=Changer la priorité  
+TicketAddMessage=Ajouter ou envoyer un message  
+TicketAddPrivateMessage=Ajouter un message privé  
+MessageSuccessfullyAdded=Demande créée  
+TicketMessageSuccessfullyAdded=Message ajouté avec succès  
+TicketMessagesList=Liste des messages  
+NoMsgForThisTicket=Pas de message pour cette demande  
+TicketProperties=Classification  
+LatestNewTickets=Les %s dernières demandes (non lues)  
+TicketSeverity=Niveau de priorité  
+ShowTicket=Voir la demande  
+RelatedTickets=Demandes liées  
+TicketAddIntervention=Créer une intervention  
+CloseTicket=Clôturer | Résoudre  
+AbandonTicket=Abandonner  
+CloseATicket=Clôturer | Résoudre une demande  
+ConfirmCloseAticket=Confirmer la clôture de la demande  
+ConfirmAbandonTicket=Confirmez-vous la fermeture de la demande au statut "Abandonnée" ?  
+ConfirmDeleteTicket=Confirmez la suppression de la demande  
+TicketDeletedSuccess=Demande supprimée avec succès  
+TicketMarkedAsClosed=Demande indiquée comme clôturée  
+TicketDurationAuto=Durée des interventions  
+TicketDurationAutoInfos=Durée calculée automatiquement à partir des interventions associées  
+TicketUpdated=Demande mise à jour  
+SendMessageByEmail=Envoyer ce message par e-mail  
+TicketNewMessage=Nouveau message  
+ErrorMailRecipientIsEmptyForSendTicketMessage=Le destinataire est vide. Aucun e-mail envoyé  
+
+# Notifications et messages  
+TicketGoIntoContactTab=Rendez-vous dans l'onglet "Contacts" pour les sélectionner  
+TicketMessageMailIntro=Entête de message  
+TicketMessageMailIntroHelp=Ce texte est ajouté seulement au début de l'e-mail et ne sera pas sauvegardé.  
+TicketMessageMailIntroText=Bonjour, <br> Une nouvelle réponse a été ajoutée à une demande que vous suivez. Voici le message : <br>  
+TicketMessageMailFooter=Pied de page des messages  
+TicketMessageMailFooterHelp=Ce texte est ajouté uniquement à la fin du message envoyé par e-mail et ne sera pas enregistré.  
+TicketMessageMailFooterText=Message envoyé par <b>%s</b> via le gestionnaire de demandes  
+
+# Contacts et documents  
+TicketContacts=Contacts liés à la demande  
+TicketDocumentsLinked=Documents associés  
+ConfirmReOpenTicket=Voulez-vous ré-ouvrir cette demande ?  
+TicketAssignedToYou=Demande attribuée  
+TicketAssignedEmailBody=Vous avez été assigné à la demande #%s par %s  
+TicketAssignedCustomerEmail=Votre demande a été assignée pour traitement.  
+TicketAssignedCustomerBody=Il s'agit d'un e-mail automatique pour confirmer que votre demande a été assignée pour traitement.  
+
+# Messages privés et notifications  
+MarkMessageAsPrivate=Marquer le message comme privé  
+TicketMessageSendEmailHelp=Un e-mail sera envoyé à tous les contacts assignés  
+TicketMessageSendEmailHelp2a=(contacts internes, mais aussi contacts externes sauf si l'option "%s" est cochée)  
+TicketMessageSendEmailHelp2b=(contacts internes et externes)  
+TicketMessagePrivateHelp=Ce message ne sera pas visible pour les utilisateurs externes  
+TicketMessageRecipientsHelp=Champ destinataire rempli avec les contacts actifs liés à la demande  
+
+# Informations sur l'émetteur  
+TicketEmailOriginIssuer=Émetteur à l'origine de la demande  
+InitialMessage=Message initial  
+
+# Contrats et interventions  
+LinkToAContract=Lien vers un contrat  
+TicketPleaseSelectAContract=Sélectionner un contrat  
+UnableToCreateInterIfNoSocid=Impossible de créer une intervention si aucun service n'est défini  
+
+# Échanges et suivi  
+TicketMailExchanges=Échanges de courrier  
+TicketInitialMessageModified=Message initial modifié  
+TicketMessageSuccesfullyUpdated=Message mis à jour avec succès  
+TicketChangeStatus=Changer l'état  
+TicketConfirmChangeStatus=Confirmez le changement d'état : %s ?  
+TicketLogStatusChanged=Statut modifié : %s à %s  
+
+# Notifications et alertes  
+TicketNotNotifyTiersAtCreate=Ne pas notifier le service à la création  
+NotifyThirdpartyOnTicketClosing=Contacts à notifier lors de la clôture de la demande  
+TicketNotifyAllTiersAtClose=Tous les contacts associés  
+TicketNotNotifyTiersAtClose=Aucun contact associé  
+Unread=Non lu  
+TicketNotCreatedFromPublicInterface=Non disponible. La demande n’a pas été créée à partir de l'interface publique.  
+ErrorTicketRefRequired=La référence de la demande est requise  
+TicketsDelayForFirstResponseTooLong=Trop de temps écoulé entre l'ouverture de la demande et une première réponse.  
+TicketsDelayFromLastResponseTooLong=Trop de temps écoulé depuis la dernière réponse à cette demande.  
+TicketNoContractFoundToLink=Aucun contrat n'a été trouvé pour être automatiquement lié à cette demande. Veuillez lier un contrat manuellement.  
+TicketManyContractsLinked=De nombreux contrats ont été automatiquement liés à cette demande. Vérifiez ce qui doit être sélectionné.  
+TicketRefAlreadyUsed=La référence [%s] est déjà utilisée. Votre nouvelle référence est [%s].  
+# Logs
+TicketLogMesgReadBy=Demande %s lue par %s  
+NoLogForThisTicket=Pas encore de journal pour cette demande  
+TicketLogAssignedTo=Demande %s assignée à %s  
+TicketLogPropertyChanged=Demande %s modifiée : classification de %s à %s  
+TicketLogClosedBy=Demande %s clôturée par %s  
+TicketLogReopen=Demande %s ré-ouverte  
+TICKET_MODIFYInDolibarr=Demande %s modifiée
+TICKET_ASSIGNEDInDolibarr=Demande %s assignée
+TICKET_DELETEInDolibarr=Demande %s supprimée
+TICKET_CLOSEInDolibarr=Demande %s fermée
+TICKET_CREATEInDolibarr=Demande %s créée
+# Public pages
+TicketSystem=Gestionnaire de demandes  
+ShowListTicketWithTrackId=Afficher la liste des demandes à partir de l'ID de suivi  
+ShowTicketWithTrackId=Afficher la demande à partir de l'ID de suivi  
+TicketPublicDesc=Vous pouvez créer une demande ou consulter son état à partir d'un ID existant.  
+YourTicketSuccessfullySaved=La demande a été enregistrée avec succès  
+MesgInfosPublicTicketCreatedWithTrackId=Une nouvelle demande a été créée avec l'ID %s et la référence %s.  
+PleaseRememberThisId=Merci de conserver le code de suivi de la demande, il pourrait être nécessaire ultérieurement.  
+
+TicketNewEmailSubject=Confirmation de création de demande - Réf %s (ID public de la demande %s)  
+TicketNewEmailSubjectCustomer=Nouvelle demande  
+TicketNewEmailBody=Ceci est un message automatique pour confirmer l'enregistrement de votre demande.  
+TicketNewEmailBodyCustomer=Ceci est un e-mail automatique pour confirmer qu'une nouvelle demande a été créée dans votre compte.  
+
+TicketNewEmailBodyInfosTicket=Informations pour le suivi de la demande  
+TicketNewEmailBodyInfosTrackId=Numéro de suivi de la demande : %s  
+TicketNewEmailBodyInfosTrackUrl=Vous pouvez voir l'état de la demande en cliquant sur le lien suivant  
+TicketNewEmailBodyInfosTrackUrlCustomer=Vous pouvez consulter l'état de votre demande dans l'interface publique en cliquant sur le lien suivant  
+
+TicketCloseEmailBodyInfosTrackUrlCustomer=Vous pouvez consulter l'historique de cette demande en cliquant sur le lien suivant  
+TicketEmailPleaseDoNotReplyToThisEmail=Merci de ne pas répondre directement à ce courriel ! Utilisez le lien pour répondre via l'interface.  
+
+TicketPublicInfoCreateTicket=Ce formulaire vous permet d'enregistrer une demande dans notre système de gestion.  
+TicketPublicPleaseBeAccuratelyDescribe=Veuillez décrire précisément votre demande. Fournissez le plus d'informations possible pour faciliter son traitement.  
+TicketPublicMsgViewLogIn=Merci d'entrer le code de suivi de la demande  
+
+TicketTrackId=ID de suivi  
+OneOfTicketTrackId=Un de vos ID de suivi  
+ErrorTicketNotFound=Demande avec l'ID de suivi %s introuvable !  
+
+Subject=Sujet  
+ViewTicket=Voir la demande  
+ViewMyTicketList=Voir la liste de mes demandes  
+ErrorEmailMustExistToCreateTicket=Erreur : adresse e-mail introuvable dans notre base de données  
+
+TicketNewEmailSubjectAdmin=Nouvelle demande créée - Réf %s (ID public de la demande %s)  
+TicketNewEmailBodyAdmin=<p> La demande vient d'être créée avec l'ID #%s, voir les informations :</p>  
+SeeThisTicketIntomanagementInterface=Voir la demande dans l'interface de gestion  
+TicketPublicInterfaceForbidden=L'interface publique pour les demandes n'a pas été activée  
+
+ErrorEmailOrTrackingInvalid=Mauvaise valeur pour l'ID de suivi ou l'e-mail  
+
+OldUser=Ancien utilisateur  
+NewUser=Nouvel utilisateur  
+
+NumberOfTicketsByMonth=Nombre de demandes par mois  
+NbOfTickets=Nombre de demandes  
+
+ExternalContributors=Contributeurs externes  
+AddContributor=Ajouter un contributeur externe  
+# notifications
+TicketCloseEmailSubjectCustomer=Demande clôturée  
+TicketCloseEmailBodyCustomer=Ceci est un message automatique pour vous avertir que la demande %s vient d'être clôturée.  
+
+TicketCloseEmailSubjectAdmin=Demande clôturée - Réf %s (ID public de la demande %s)  
+TicketCloseEmailBodyAdmin=Une demande avec l'ID #%s vient d'être clôturée, voir les informations :  
+
+TicketNotificationEmailSubject=Demande %s mise à jour  
+TicketNotificationEmailBody=Ceci est un message automatique pour vous informer que la demande %s vient d'être mise à jour  
+
+TicketNotificationRecipient=Destinataire de la notification  
+TicketNotificationLogMessage=Message de journal  
+
+TicketNotificationEmailBodyInfosTrackUrlinternal=Afficher la demande dans l'interface  
+TicketNotificationNumberEmailSent=Courriel de notification envoyé : %s  
+
+ActionsOnTicket=Événements sur la demande  
+# Boxes
+BoxLastTicket=Dernières demandes créées  
+BoxLastTicketDescription=Les %s dernières demandes créées  
+BoxLastTicketContent=  
+BoxLastTicketNoRecordedTickets=Pas de demande non lue  
+
+BoxLastModifiedTicket=Dernières demandes modifiées  
+BoxLastModifiedTicketDescription=Les %s dernières demandes modifiées  
+BoxLastModifiedTicketContent=  
+BoxLastModifiedTicketNoRecordedTickets=Pas de demandes modifiées récemment  
+
+BoxTicketType=Répartition des demandes ouvertes par type  
+BoxTicketSeverity=Nombre de demandes ouvertes par niveau de priorité  
+BoxNoTicketSeverity=Aucune demande ouverte  
+
+BoxTicketLastXDays=Nombre de nouvelles demandes par jour ces %s derniers jours  
+BoxTicketLastXDayswidget=Nombre de nouvelles demandes par jour ces X derniers jours  
+BoxNoTicketLastXDays=Aucune nouvelle demande ces %s derniers jours  
+
+BoxNumberOfTicketByDay=Nombre de nouvelles demandes par jour  
+BoxNewTicketVSClose=Nombre de nouvelles demandes par rapport aux demandes clôturées (aujourd'hui)  
+
+TicketCreatedToday=Demande créée aujourd'hui  
+TicketClosedToday=Demande clôturée aujourd'hui  
+
+KMFoundForTicketGroup=Consulter notre FAQ  
+SetTitle=Définir le titre  
+eservices_motifs_voyage = Liste des motifs de voyage
+labelmotifTooltipHelp = Libellé du motif de voyage
+eservices_situation_professionnelle = Situation professionnelle
+labelsituationproTooltipHelp = Situation de la personne par rapport au Diocèse / Institut / Congrégation
+eservices_etat_vie = Liste des états de vie
+labeletatdevieTooltipHelp = Etat de vie
+labeldioceseinstitutTooltipHelp = Diocèse / Institut / Congrégation
+eservices_diocese_congregation = Liste Diocèse / Institut / Congrégation
+opcache = OPcache-GUI
+ESERVICES_KPI_FILE = Nom du fichier de collecte des KPI
+ESERVICES_PTA_FILE = Nom du fichier de suivi des PTA
+ESERVICES_INDIC_MESURE_FILE = Nom du fichier des indicateurs et mesures d'activités
