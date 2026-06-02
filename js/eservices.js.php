@@ -17,14 +17,26 @@
  * Library javascript to enable Browser notifications
  */
 
+if (!defined('NOREQUIREUSER')) {
+	define('NOREQUIREUSER', '1');
+}
+if (!defined('NOREQUIREDB')) {
+	define('NOREQUIREDB', '1');
+}
 if (!defined('NOREQUIRESOC')) {
 	define('NOREQUIRESOC', '1');
 }
 if (!defined('NOREQUIRETRAN')) {
 	define('NOREQUIRETRAN', '1');
 }
+if (!defined('NOCSRFCHECK')) {
+	define('NOCSRFCHECK', 1);
+}
 if (!defined('NOTOKENRENEWAL')) {
 	define('NOTOKENRENEWAL', 1);
+}
+if (!defined('NOLOGIN')) {
+	define('NOLOGIN', 1);
 }
 if (!defined('NOREQUIREMENU')) {
 	define('NOREQUIREMENU', 1);
@@ -72,7 +84,7 @@ if (!$res) {
 }
 
 // Define js type
-header('Content-Type: application/javascript');
+header('Content-Type: application/javascript; charset=UTF-8');
 // Important: Following code is to cache this file to avoid page request by browser at each Dolibarr page access.
 // You can use CTRL+F5 to refresh your browser cache.
 if (empty($dolibarr_nocache)) {
@@ -90,7 +102,15 @@ if (empty($dolibarr_nocache)) {
     'use strict';
 
     function estSurPageSpecifique() {
-        return window.location.pathname.includes('/ticket/card.php');
+        const path = window.location.pathname;
+
+        const allowedPages = [
+            '/ticket/card.php'
+        ];
+
+        return allowedPages.some(function (page) {
+            return path.includes(page);
+        });
     }
 
     function safeRequestSubmit(form) {
@@ -197,10 +217,25 @@ if (empty($dolibarr_nocache)) {
         return true;
     }
 
+    function restrictFileInputAccept() {
+        const fileInput = document.getElementById('addedfile');
+
+        if (!fileInput) {
+            return;
+        }
+
+        fileInput.setAttribute(
+            'accept',
+            '.pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,image/jpeg,image/png,image/gif,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        );
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         if (!estSurPageSpecifique()) {
             return;
         }
+
+        restrictFileInputAccept();
 
         const serviceSelect = document.querySelector("#options_eservicelie");
 

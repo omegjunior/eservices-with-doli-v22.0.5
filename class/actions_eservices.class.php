@@ -831,67 +831,215 @@ class ActionsEservices
 		if (in_array($parameters['currentcontext'], array('publicnewticketcard'))) {	    // do something only for the context 'somecontext1' or 'somecontext2'
 			// Do what you want here...
 			// You can for example call global vars like $fieldstosearchall to overwrite them, or update database depending on $action and $_POST values.
-			$scriptpourformulaire = '<script type="text/javascript">
-			document.addEventListener("DOMContentLoaded", function() {
+			$scriptpourformulaire = '<script nonce="'.getNonce().'" type="text/javascript">
+				(function () {
+					"use strict";
 
-				// Sélectionner l\'élément <select> avec id="options_eservicelie"
-				const serviceSelect = document.querySelector("#options_eservicelie");
-		
-				// Fonction pour afficher/masquer les champs selon la valeur sélectionnée
-				function reloadform() {
-					// Assurez-vous que serviceSelect existe avant d\'essayer d\'y accéder
-					if (!serviceSelect) return;					
-					const form = document.querySelector("#form_create_ticket"); // Formulaire
-					if (!form) return;
-					// Ajouter ou mettre à jour le champ hidden pour l\'action
-					let actionInput = form.querySelector("input[name=\'action\']");
-					actionInput.value = "create"; // Définir l\'action
-					// Soumettre le formulaire
-					form.submit();		
-				}
-		
-				// Écouter l\'événement change sur le <select> pour détecter la sélection
-				$(serviceSelect).on(\'change\', reloadform);
-		
-				// Fonction pour définir les valeurs par défaut et cacher les champs
-				function setDefaultValuesAndHide() {
-					const fields = [
-						{ selector: "#selecttype_code", value: "ESERV" },
-						{ selector: "#selectcategory_code", value: "GEN" },
-						{ selector: "#selectseverity_code", value: "NORM" },
-						{ selector: "#subject", value: "Demande en ligne" },
-						{ selector: "#message", value: "Merci de bien vouloir prendre en compte cette demande d\'acte faite en ligne" },
-					];
-					fields.forEach(field => {
-						const element = document.querySelector(field.selector);
-						if (element) element.value = field.value;
-					});					
-				}
-			
-				// Applique les modifications au chargement de la page
-				setDefaultValuesAndHide();
-
-				const addFileButton = document.getElementById("addfile");
-				if (addFileButton) {
-					addFileButton.addEventListener("click", function (e) {
-						const fileInput = document.getElementById("addedfile");
-						const file = fileInput.files[0];
-						const allowedTypes = ["image/jpeg", "image/png", "image/gif", "application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
-						const maxFileSize = 2 * 1024 * 1024; // 5 MB
-				
-						if (file) {
-							if (!allowedTypes.includes(file.type)) {
-								alert("Fichier non autorisé. Veuillez sélectionner un fichier image, PDF ou Word.");
-								e.preventDefault();
-							}
-							if (file.size > maxFileSize) {
-								alert("Fichier trop volumineux. La taille maximale est de 2 MB.");
-								e.preventDefault();
-							}
+					function onReady(callback) {
+						if (document.readyState === "loading") {
+							document.addEventListener("DOMContentLoaded", callback);
+						} else {
+							callback();
 						}
+					}
+
+					function getTicketForm() {
+						return document.querySelector("#form_create_ticket");
+					}
+
+					function safeSubmit(form) {
+						if (!form) return;
+
+						if (typeof form.requestSubmit === "function") {
+							form.requestSubmit();
+						} else {
+							form.submit();
+						}
+					}
+
+					function reloadForm(serviceSelect) {
+						if (!serviceSelect) return;
+
+						const form = getTicketForm();
+						if (!form) return;
+
+						let actionInput = form.querySelector("input[name=\'action\']");
+
+						if (!actionInput) {
+							actionInput = document.createElement("input");
+							actionInput.type = "hidden";
+							actionInput.name = "action";
+							form.appendChild(actionInput);
+						}
+
+						actionInput.value = "create";
+						safeSubmit(form);
+					}
+
+					function setDefaultValues() {
+						const fields = [
+							{ selector: "#selecttype_code", value: "ESERV" },
+							{ selector: "#selectcategory_code", value: "GEN" },
+							{ selector: "#selectseverity_code", value: "NORM" },
+							{ selector: "#subject", value: "Demande en ligne" },
+							{ selector: "#message", value: "Merci de bien vouloir prendre en compte cette demande d\\\'acte faite en ligne" }
+						];
+
+						fields.forEach(function (field) {
+							const element = document.querySelector(field.selector);
+							if (element) {
+								element.value = field.value;
+							}
+						});
+					}
+
+					function configureFileInput() {
+						const fileInput = document.getElementById("addedfile");
+
+						if (!fileInput) {
+							return;
+						}
+
+						fileInput.setAttribute(
+							"accept",
+							".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,image/jpeg,image/png,image/gif"
+						);
+					}
+
+					function getFileExtension(filename) {
+						if (!filename || filename.indexOf(".") === -1) {
+							return "";
+						}
+
+						return filename.split(".").pop().toLowerCase();
+					}
+
+					function isAllowedFile(file) {
+						if (!file) {
+							return {
+								valid: true,
+								message: ""
+							};
+						}
+
+						const maxFileSize = 2 * 1024 * 1024;
+
+						const allowedExtensions = [
+							"pdf",
+							"doc",
+							"docx",
+							"jpg",
+							"jpeg",
+							"png",
+							"gif"
+						];
+
+						const allowedMimeTypes = [
+							"application/pdf",
+							"application/msword",
+							"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+							"image/jpeg",
+							"image/png",
+							"image/gif"
+						];
+
+						const extension = getFileExtension(file.name || "");
+						const mimeType = file.type || "";
+
+						if (!allowedExtensions.includes(extension)) {
+							return {
+								valid: false,
+								message: "Extension non autorisée. Formats acceptés : PDF, DOC, DOCX, JPG, JPEG, PNG, GIF."
+							};
+						}
+
+						if (mimeType && !allowedMimeTypes.includes(mimeType)) {
+							return {
+								valid: false,
+								message: "Type de fichier non autorisé. Veuillez sélectionner un fichier PDF, Word ou image."
+							};
+						}
+
+						if (file.size > maxFileSize) {
+							return {
+								valid: false,
+								message: "Fichier trop volumineux. La taille maximale autorisée est de 2 MB."
+							};
+						}
+
+						return {
+							valid: true,
+							message: ""
+						};
+					}
+
+					function validateAddedFile(event) {
+						const fileInput = document.getElementById("addedfile");
+
+						if (!fileInput || !fileInput.files || !fileInput.files.length) {
+							return true;
+						}
+
+						const file = fileInput.files[0];
+						const validation = isAllowedFile(file);
+
+						if (!validation.valid) {
+							alert(validation.message);
+							fileInput.value = "";
+
+							if (event) {
+								event.preventDefault();
+								event.stopPropagation();
+							}
+
+							return false;
+						}
+
+						return true;
+					}
+
+					function bindFileValidation() {
+						const fileInput = document.getElementById("addedfile");
+						const addFileButton = document.getElementById("addfile");
+
+						if (fileInput) {
+							fileInput.addEventListener("change", function (event) {
+								validateAddedFile(event);
+							});
+						}
+
+						if (addFileButton) {
+							addFileButton.addEventListener("click", function (event) {
+								validateAddedFile(event);
+							});
+						}
+					}
+
+					function bindServiceChange() {
+						const serviceSelect = document.querySelector("#options_eservicelie");
+
+						if (!serviceSelect) {
+							return;
+						}
+
+						if (window.jQuery) {
+							window.jQuery(serviceSelect).on("change", function () {
+								reloadForm(serviceSelect);
+							});
+						} else {
+							serviceSelect.addEventListener("change", function () {
+								reloadForm(serviceSelect);
+							});
+						}
+					}
+
+					onReady(function () {
+						setDefaultValues();
+						configureFileInput();
+						bindFileValidation();
+						bindServiceChange();
 					});
-				}
-			});
+				})();
 			</script>';
 		}
 
