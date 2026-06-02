@@ -46,7 +46,18 @@ if (!defined('NOREQUIREAJAX')) {
 
 session_cache_limiter('public');
 
-require_once '../../main.inc.php';
+//require_once '../../main.inc.php';
+$mypath = dirname(__DIR__, 3);
+$mybasename = basename($mypath);
+if($mybasename == 'ticket'){// cas où on a un DOL_URL_ROOT ce qui fait que le niveau 2 de _DIR_ donne ticket
+	$maindirectorylevel = dirname(__DIR__, 5);
+}else{// on a pas DOL_URL_ROOT
+	$maindirectorylevel = dirname(__DIR__, 4);
+}
+$mymainfile = $maindirectorylevel. DIRECTORY_SEPARATOR.'main.inc.php';
+if (file_exists($mymainfile)) {
+	require_once $mymainfile; 
+}
 /**
  * @var Conf $conf
  * @var Translate $langs

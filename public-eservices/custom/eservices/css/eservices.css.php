@@ -45,7 +45,34 @@ if (!defined('NOREQUIREAJAX')) {
 
 session_cache_limiter('public');
 
-require_once '../../../main.inc.php';
+$res = 0;
+// Try main.inc.php into web root known defined into CONTEXT_DOCUMENT_ROOT (not always defined)
+if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
+	$res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
+}
+// Try main.inc.php into web root detected using web root calculated from SCRIPT_FILENAME
+$tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME']; $tmp2 = realpath(__FILE__); $i = strlen($tmp) - 1; $j = strlen($tmp2) - 1;
+while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) {
+	$i--;
+	$j--;
+}
+if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) {
+	$res = @include substr($tmp, 0, ($i + 1))."/main.inc.php";
+}
+if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/../main.inc.php")) {
+	$res = @include substr($tmp, 0, ($i + 1))."/../main.inc.php";
+}
+// Try main.inc.php using relative path
+if (!$res && file_exists("../../main.inc.php")) {
+	$res = @include "../../main.inc.php";
+}
+if (!$res && file_exists("../../../main.inc.php")) {
+	$res = @include "../../../main.inc.php";
+}
+if (empty($res)) $res=@include '../../../../../main.inc.php';	// For "custom" directory
+if (!$res) {
+	die("Include of main fails");
+}
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
 // Define css type
@@ -59,75 +86,17 @@ if (empty($dolibarr_nocache)) {
 
 ?>
 
-html {
-	min-height: 100%; height: 100%;
+div.mainmenu.eservices {
+    background-image: url(../../eservices/img/eservices.png);
+    background-position-y: 3px;
+    filter: saturate(0);
 }
 
-html {
-<?php
-if (!empty($conf->global->TICKET_SHOW_MODULE_LOGO)) {
-	print 'background: url("../public/img/bg_ticket.png") no-repeat 95% 90%;';
-}
-?>
+.eservices-error {
+    border: 1px solid red;
 }
 
-
-div.ticketform {
-	font-family: arial;
-	position: static;
-/*	padding: 2em 1em;
-	overflow-x: auto;
-	border: 2px solid rgb(153, 153, 153);
-	background-color: rgb(255, 255, 255);
-	box-shadow: 2px 2px 2px rgb(245, 245, 245);
-	border-radius: 10px 10px 10px 10px;
-	margin: 1.5em;
-	background : #ffffff;
-*/
-	text-align: center;
-}
-
-div.ticketform .index_create, div.ticketform .index_display {
-	display: inline-block;
-	width: 200px;
-	height: 60px;
-	text-align: center;
-	vertical-align: middle;
-	margin: 20px;
-	text-transform: uppercase;
-}
-
-#form_create_ticket, #form_view_ticket
-{
-	margin-left: 10px;
-	margin-right: 10px;
-	padding-left:1em;
-	padding-right:1em;
-	padding-top:1.5em;
-	padding-bottom:12px;
-
-	border: 1px solid #C0C0C0;
-	background-color: #E0E0E0;
-
-	-moz-box-shadow: 4px 4px 4px #DDD;
-	-webkit-box-shadow: 4px 4px 4px #DDD;
-	box-shadow: 4px 4px 4px #DDD;
-
-	border-radius: 8px;
-	border:solid 1px rgba(168,168,168,.4);
-	border-top:solid 1px f8f8f8;
-	background-color: #f8f8f8;
-}
-
-#form_create_ticket input.text, #form_create_ticket textarea { width:450px;}
-
-@media only screen and (max-width: 767px)
-{
-	#form_create_ticket input.text,	#form_create_ticket textarea { width: unset;}
-
-	#form_create_ticket, #form_view_ticket
-	{
-		margin-left: 0;
-		margin-right: 0;
-	}
+.eservices-error-message {
+	color: red;
+	font-size: 0.9em;
 }
