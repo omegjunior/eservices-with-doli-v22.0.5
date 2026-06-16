@@ -235,7 +235,8 @@ class modEservices extends DolibarrModules
 		$constants[] = array('MAIN_CHECKBOX_LEFT_COLUMN', 'chaine', '0', "Afficher à gauche multiSelectArrayWithCheckbox ", 0, 'allentities', 1);
 		$constants[] = array('ESERVICES_TITLE_PUBLIC', 'chaine', 'service-support', "Préfix par défaut du titre de la page interface publique", 0, 'allentities', 1);
 		$constants[] = array('TICKET_PUBLIC_INTERFACE_TOPIC', 'chaine', '0', "Ne pas afficher un topic en substitution du logo", 0, 'current', 1);
-		$constants[] = array('MAIN_FAVICON_URL', 'chaine', '', "", 0, 'current', 1);
+		$constants[] = array('MAIN_FAVICON_URL', 'chaine', '/img/favicon.ico', "favicon de l'interface publique", 0, 'current', 1);
+		$constants[] = array('MAIN_HTML_TITLE', 'chaine', 'Support Public', "Titre HTML de la page", 0, 'current', 1);
 		$constants[] = array('MAIN_HIDE_POWERED_BY', 'chaine', '1', "Cacher le powered by dolibarr", 0, 'current', 1);
 		$constants[] = array('TICKET_SHOW_COMPANY_LOGO', 'chaine', '0', "ne pas afficher logo - inacessible en interface publique", 0, 'current', 1);
 		$constants[] = array('TICKET_IMAGE_PUBLIC_INTERFACE', 'chaine', '/documents/'.$num_entity.'mycompany/logos/'.getDolGlobalString('MAIN_INFO_SOCIETE_LOGO'), "image interface publique - lien relatif par rapport au sous domaine", 0, 'current', 1);
@@ -640,7 +641,7 @@ class modEservices extends DolibarrModules
 		// créer un répertoire particulier dans le répertoire /public/ticket/ pour les fichiers nécessaires interface publique
 		require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 		//1- copie des fichiers core include etc
-		$dir_eservices = DOL_DOCUMENT_ROOT . '/public/ticket/'.DOL_URL_ROOT;
+		$dir_eservices = DOL_DOCUMENT_ROOT . '/public/ticket/';
 		//faire les copies du contenu du répertoire public-eservices
 		$dir_src = DOL_DOCUMENT_ROOT . '/custom/eservices/public-eservices/ticket-dol-url-root/';
 		if(dolCopyDir($dir_src, $dir_eservices, '644', 1)){
@@ -695,7 +696,7 @@ class modEservices extends DolibarrModules
 			// création échoue, ajouter une erreur
 			dol_syslog("Erreur lors de la copie du répertoire $website");		
 		}
-		//6- copie du folder image du website pour l'interface première de liste des services support au public
+		//6A- copie du folder image du website pour l'interface première de liste des services support au public
 		$website_img = DOL_DATA_ROOT . '/medias/image/service-support/';
 		//faire les copies du contenu du répertoire public-eservices
 		$folder_img_src = DOL_DOCUMENT_ROOT . '/custom/eservices/public-eservices/website/media-images/';
@@ -705,6 +706,17 @@ class modEservices extends DolibarrModules
 		} else {
 			// création échoue, ajouter une erreur
 			dol_syslog("Erreur lors de la copie du répertoire $website_img");		
+		}
+		//6B- copie du folder css du website pour l'interface première de liste des services support au public
+		$website_css = DOL_DATA_ROOT . '/medias/css/service-support/';
+		//faire les copies du contenu du répertoire public-eservices
+		$folder_css_src = DOL_DOCUMENT_ROOT . '/custom/eservices/public-eservices/website/css/';
+		if(dolCopyDir($folder_css_src, $website_css, '644', 1)){
+			//message de confirmation
+			dol_syslog("copie avec succès du répertoire $website_css");
+		} else {
+			// création échoue, ajouter une erreur
+			dol_syslog("Erreur lors de la copie du répertoire $website_css");		
 		}
 		//7- copie du fichier modifié de core/lib/ticket.lib
 		$icketlib_file = DOL_DOCUMENT_ROOT . '/core/lib/ticket.lib.php';

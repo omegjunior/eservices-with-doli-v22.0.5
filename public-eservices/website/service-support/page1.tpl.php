@@ -18,7 +18,7 @@ ob_start();
 <meta name="keywords" content="" />
 <meta name="title" content="Support Public - Archidiocèse de Cotonou" />
 <meta name="description" content="Interface d'accueil - Portail Support Public" />
-<meta name="generator" content="Dolibarr 20.0.2 (https://www.dolibarr.org)" />
+<meta name="generator" content="Dolibarr 22.0.5 (https://www.dolibarr.org)" />
 <meta name="dolibarr:pageid" content="1" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="canonical" href="/" />
@@ -80,7 +80,7 @@ ob_start();
                 $file_name = preg_replace('/\s+/', '_', $file_name);
         
                 print '<div class="w-full md:w-1/3 p-4 flex flex-col justify-between">';
-                print '<a href="'.$urlalt.'/index.php?entity='.$entity_obj->rowid.'" target="_blank" class="block bg-gray-200 hover:bg-green-200 rounded-lg shadow-lg transition-all transform hover:scale-105 anim-scroll h-full">';
+                print '<a href="'.$urlalt.'" target="_blank" class="block bg-gray-200 hover:bg-green-200 rounded-lg shadow-lg transition-all transform hover:scale-105 anim-scroll h-full">';
                 print '<div class="relative flex flex-col h-full">';
                 print '<img src="'.'/medias/image/'.$websitekey.'/'.$file_name.'.png" alt="'.$entity_obj->label.'" class="w-full h-32 object-contain rounded-t-lg">';
                 print '<div class="absolute top-0 left-0 right-0 bottom-0 bg-green-500 opacity-50 rounded-t-lg"></div>';
