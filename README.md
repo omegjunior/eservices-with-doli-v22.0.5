@@ -2,7 +2,8 @@
 
 ## Features
 
-Description of the module...
+Module de gestion des demandes d'actes administratifs dans les services de l'archidiocèse de Cotonou
+Le module repose sur les modules Ticket et Site de Dolibarr
 
 <!--
 ![Screenshot eservices](img/screenshot_eservices.png?raw=true "Eservices"){imgmd}
