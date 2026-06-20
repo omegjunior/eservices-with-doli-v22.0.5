@@ -11,51 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy via SSH avec retry
-        shell: bash
-        run: |
-          set -x
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-
-          # Écrire la clé privée
-          echo "${{ secrets.VPS_SSH_KEY }}" > /tmp/deploy_key
-          chmod 600 /tmp/deploy_key
-
-          # Ajouter le VPS aux known_hosts — ignoré si échec réseau
-          ssh-keyscan -p ${{ secrets.VPS_PORT }} \
-            ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
-          chmod 600 ~/.ssh/known_hosts 2>/dev/null || true
-
-          # Fonction de déploiement
-          deploy() {
-            ssh -i /tmp/deploy_key \
-                -p ${{ secrets.VPS_PORT }} \
-                -o ConnectTimeout=20 \
-                -o StrictHostKeyChecking=no \
-                -o UserKnownHostsFile=/dev/null \
-                ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
-                "set -e
-                 cd ${{ secrets.DEPLOY_PATH }}
-                 git fetch origin main
-                 git reset --hard origin/main
-                 docker exec service-public-xsu34exu06cy9r08dep278es \
-                   php -r 'opcache_reset();' 2>/dev/null || true
-                 echo '✅ '\$(basename ${{ secrets.DEPLOY_PATH }})'  déployé : '\$(date)"
-          }
-
-          # Retry — 3 tentatives avec 30s d'attente
-          MAX_ATTEMPTS=3
-          ATTEMPT=1
-          until deploy; do
-            if [ $ATTEMPT -ge $MAX_ATTEMPTS ]; then
-              echo "❌ Échec après $MAX_ATTEMPTS tentatives"
-              rm -f /tmp/deploy_key
-              exit 1
-            fi
-            echo "⚠️ Tentative $ATTEMPT échouée, retry dans 30s..."
-            ATTEMPT=$((ATTEMPT + 1))
-            sleep 30
-          done
-
-          rm -f /tmp/deploy_key
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          proxy_port: ${{ secrets.SSH_PORT }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            set -e
+            cd ${{ secrets.DEPLOY_PATH }}
+            git fetch origin main
+            git reset --hard origin/main
+            docker exec service-public-xsu34exu06cy9r08dep278es \
+              php -r "opcache_reset();" 2>/dev/null || true
+            echo "✅ $(basename ${{ secrets.DEPLOY_PATH }}) déployé : $(date)"
