@@ -14,8 +14,7 @@ jobs:
       - name: Deploy via SSH avec retry
         shell: bash
         run: |
-          set -x  # ← à garder — nécessaire au bon fonctionnement
-          set -e
+          set -x
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
@@ -23,10 +22,10 @@ jobs:
           echo "${{ secrets.VPS_SSH_KEY }}" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
 
-          # Ajouter le VPS aux known_hosts
+          # Ajouter le VPS aux known_hosts — ignoré si échec réseau
           ssh-keyscan -p ${{ secrets.VPS_PORT }} \
-            ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
-          chmod 600 ~/.ssh/known_hosts
+            ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+          chmod 600 ~/.ssh/known_hosts 2>/dev/null || true
 
           # Fonction de déploiement
           deploy() {
@@ -34,6 +33,7 @@ jobs:
                 -p ${{ secrets.VPS_PORT }} \
                 -o ConnectTimeout=20 \
                 -o StrictHostKeyChecking=no \
+                -o UserKnownHostsFile=/dev/null \
                 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
                 "set -e
                  cd ${{ secrets.DEPLOY_PATH }}
@@ -41,7 +41,7 @@ jobs:
                  git reset --hard origin/main
                  docker exec service-public-xsu34exu06cy9r08dep278es \
                    php -r 'opcache_reset();' 2>/dev/null || true
-                 echo '✅ '\$(basename ${{ secrets.DEPLOY_PATH }})' déployé : '\$(date)"
+                 echo '✅ '\$(basename ${{ secrets.DEPLOY_PATH }})'  déployé : '\$(date)"
           }
 
           # Retry — 3 tentatives avec 30s d'attente
