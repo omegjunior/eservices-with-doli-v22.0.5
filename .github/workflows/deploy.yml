@@ -14,7 +14,7 @@ jobs:
       - name: Deploy via SSH avec retry
         shell: bash
         run: |
-          set -x
+          set -x  # ← à garder — nécessaire au bon fonctionnement
           set -e
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
